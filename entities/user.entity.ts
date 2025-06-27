@@ -10,7 +10,7 @@ import {
 import { BaseUser } from './base-user.entity';
 import { UserRole } from '../enums/user-role.enum';
 
-@Entity('user')
+@Entity('users')
 @Index(['email'], { unique: true })
 @Index(['username'], { unique: true })
 @Index(['lastLoginAt'])

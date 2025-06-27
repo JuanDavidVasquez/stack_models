@@ -4,15 +4,14 @@ import {
     PrimaryGeneratedColumn,
     CreateDateColumn,
     UpdateDateColumn,
-    ManyToOne,
-    JoinColumn,
     Index,
 } from 'typeorm';
-import { User } from './user.entity';
-import { text } from 'stream/consumers';
 
 @Entity('user_sessions')
 @Index(['userId', 'isActive'])
+@Index(['sourceTable', 'userId', 'isActive'])
+@Index(['sourceTable', 'isActive'])
+@Index(['userEmail', 'isActive'])
 @Index(['expiresAt'])
 @Index(['deviceId'])
 export class UserSession {
@@ -25,9 +24,14 @@ export class UserSession {
     @Column({ name: 'user_id' })
     userId!: string;
 
-    @ManyToOne(() => User, { onDelete: 'CASCADE' })
-    @JoinColumn({ name: 'user_id' })
-    user!: User;
+    @Column({ name: 'source_table', type: 'varchar', length: 64 })
+    sourceTable!: string;
+
+    @Column({ name: 'user_email', type: 'varchar', length: 255 })
+    userEmail!: string;
+
+    @Column({ name: 'user_role', type: 'varchar', length: 50 })
+    userRole!: string;
 
     @Column({ name: 'refresh_token', type: 'varchar', length: 512, unique: true })
     refreshToken!: string;
