@@ -7,11 +7,10 @@ import {
     DeleteDateColumn,
     Index,
 } from 'typeorm';
-import { UserRole } from '../../../shared/constants/roles';
-import { USER_TABLE_NAME } from '../../../core/config/user-table.config';
 import { BaseUser } from './base-user.entity';
+import { UserRole } from '../enums/user-role.enum';
 
-@Entity(USER_TABLE_NAME)
+@Entity('user')
 @Index(['email'], { unique: true })
 @Index(['username'], { unique: true })
 @Index(['lastLoginAt'])
