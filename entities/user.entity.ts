@@ -1,10 +1,6 @@
 import {
     Entity,
     Column,
-    PrimaryGeneratedColumn,
-    CreateDateColumn,
-    UpdateDateColumn,
-    DeleteDateColumn,
     Index,
 } from 'typeorm';
 import { BaseUser } from './base-user.entity';
